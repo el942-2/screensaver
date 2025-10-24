@@ -1,0 +1,104 @@
+/* General page styling */
+body {
+  margin: 0;
+  background-color: black;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 2s ease;
+}
+
+.title {
+  font-family: monospace;
+  font-size: 1.5rem;
+  margin-top: 40px;
+  opacity: 0.7;
+  transition: opacity 1s ease;
+}
+
+/* Container holding shapes */
+.container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+/* Shape base styles */
+.circle, .square, .triangle {
+  position: absolute;
+  opacity: 0.8;
+  transition: transform 1s ease;
+}
+
+/* Circle */
+.circle {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, cyan, transparent);
+  border-radius: 50%;
+  top: 40%;
+  left: 40%;
+}
+
+/* Square */
+.square {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, magenta, transparent);
+  top: 20%;
+  left: 10%;
+}
+
+/* Triangle (using clip-path) */
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 70px solid lime;
+  top: 70%;
+  left: 70%;
+}
+
+/* Hover activates "screensaver" mode */
+body:hover {
+  background: radial-gradient(circle, #0ff, #001);
+}
+
+body:hover .title {
+  opacity: 0;
+}
+
+/* Continuous animations */
+body:hover .circle {
+  animation: drift 6s linear infinite;
+}
+
+body:hover .square {
+  animation: spin 4s linear infinite;
+}
+
+body:hover .triangle {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Keyframe animations */
+@keyframes drift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(100px, -80px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg) scale(1); }
+  to { transform: rotate(360deg) scale(1.2); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
